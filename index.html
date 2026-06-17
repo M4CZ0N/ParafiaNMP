@@ -41,7 +41,6 @@
             transition: var(--transition);
         }
 
-
         .top-bar {
             background-color: var(--primary-color);
             color: var(--accent-color);
@@ -53,6 +52,12 @@
             letter-spacing: 0.5px;
         }
 
+        /* Ulepszony styl dla elementów w top-bar */
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
         header {
             background-color: #ffffff;
@@ -89,6 +94,26 @@
             margin-top: 3px;
         }
 
+        /* Ukryty domyślnie przycisk menu na komputerach */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -106,18 +131,15 @@
             transition: all 0.2s ease-in-out; 
         }
 
-
         nav ul li:first-child a {
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
             background-color: var(--primary-color);
         }
-
         
         nav ul li:first-child a:hover {
             background-color: #172a3a; 
         }
-
 
         nav ul li:not(:first-child) a:hover {
             color: var(--accent-color);
@@ -189,7 +211,6 @@
             color: var(--primary-color);
         }
 
-
         .main-container {
             max-width: 1200px;
             margin: 60px auto;
@@ -198,7 +219,6 @@
             grid-template-columns: 2fr 1fr;
             gap: 50px;
         }
-
 
         .section-title {
             font-family: 'Cinzel', serif;
@@ -268,7 +288,6 @@
             max-width: 100%;
             margin-top: 20px;
             margin-bottom: 20px;
-            
         }
 
         .read-more {
@@ -430,33 +449,117 @@
             letter-spacing: 0.5px;
         }
 
+        /* MEDIA QUERIES - RESPONSYWNOŚĆ */
         @media (max-width: 968px) {
             .main-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-            .nav-container {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+            
+            /* TOP-BAR na telefonie: lepsze rozłożenie i marginesy */
             .top-bar {
                 flex-direction: column;
                 align-items: center;
-                gap: 8px;
+                gap: 10px;
                 text-align: center;
+                padding: 12px 20px;
+            }
+            .top-bar-item {
+                justify-content: center;
+                width: 100%;
+                font-size: 0.8rem;
+            }
+
+            /* HEADER: dodanie pozycji relative dla absolutnego menu */
+            .nav-container {
+                padding: 15px 20px;
+                position: relative;
+                width: 100%;
+                justify-content: space-between;
+                flex-direction: row; /* Trzymamy logo i przycisk w jednej linii */
+            }
+
+            /* Pokazanie przycisku hamburgera */
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Zmiana ikony na "X" gdy menu jest aktywne */
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            /* ROZWIJANE MENU MOBILNE */
+            nav {
+                display: none; /* Domyślnie ukryte */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                border-bottom: 2px solid var(--accent-color);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            nav.active {
+                display: block; /* Pokazuje się po kliknięciu */
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                text-align: left;
+                border: none !important; /* Reset obramowań z desktopu */
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            nav ul li:first-child a {
+                background-color: transparent;
+                color: var(--accent-color);
+            }
+
+            nav ul li a:hover {
+                background-color: var(--bg-light);
+                color: var(--primary-color) !important;
+            }
+            
+            /* Poprawa wielkości nagłówka na telefonach */
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                padding: 0 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="top-bar">
-        <div>📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA</div>
-        <div>📞 KANCELARIA PARAFIALNA: +48 786 957 688</div>
+        <!-- Dodano klasy top-bar-item dla łatwiejszego stylowania -->
+        <div class="top-bar-item">📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA</div>
+        <div class="top-bar-item">📞 KANCELARIA: +48 786 957 688</div>
     </div>
     <header>
         <div class="nav-container">
@@ -464,7 +567,15 @@
                 <h1>Parafia pw. Nawiedzenia NMP</h1>
                 <span>w Suchej Beskidzkiej</span>
             </div>
-            <nav>
+            
+            <!-- Nowy przycisk do rozwijania menu -->
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Otwórz menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="nav-menu">
                 <ul>
                     <li><a href="/">Główna</a></li>
                     <li><a href="przyklad.html">Ogłoszenia</a></li>
@@ -497,7 +608,7 @@
                     </div>
                     <h3>Parafia Nawiedzenia NMP w Suchej Beskidzkiej w czasie wakacji</h3>
                     <p>Informacje dotyczące funkcjonowania parafii, porządku odprawiania Mszy Świętych oraz godzin pracy kancelarii parafialnej w okresie wakacyjnym...</p>
-                    <img src="mszeWWakacjeSB.png">
+                    <img src="mszeWWakacjeSB.png" alt="Msze w wakacje">
                     <a href="przyklad.html" class="read-more">Czytaj artykuł →</a>
                 </div>
 
@@ -508,7 +619,7 @@
                     </div>
                     <h3>Nabożeństwo do św. Szarbela</h3>
                     <p>Serdecznie zapraszamy na uroczyste nabożeństwo do św. Szarbela w nadchodzącą niedzielę o godz. 18.00. Prośby i intencje można składać do przygotowanego koszyka przed ołtarzem głównym. Po zakończeniu liturgii w zakrystii będzie możliwość otrzymania oleju św. Szarbela.</p>
-                    <img src="szarbelaSB.png">
+                    <img src="szarbelaSB.png" alt="Św. Szarbel">
                     <a href="przyklad.html" class="read-more">Czytaj artykuł →</a>
                 </div>
 
@@ -590,5 +701,24 @@
         </div>
     </footer>
 
+    <!-- Skrypt JavaScript obsługujący otwieranie i zamykanie menu -->
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Opcjonalnie: Zamknij menu po kliknięciu w dowolny link
+        const navLinks = document.querySelectorAll('#nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
