@@ -6,13 +6,14 @@
     <title>Parafia pw. Nawiedzenia NMP w Suchej Beskidzkiej</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        /* ZMIENNE I RESET */
         :root {
-            --primary-color: #0c181c; /* Bardzo głęboki, niemal czarny granat */
+            --primary-color: #0c181c; 
             --secondary-color: #172a3a;
-            --accent-color: #c5a059; /* Stonowane, klasyczne złoto */
+            --accent-color: #c5a059; 
             --text-dark: #1a202c;
             --text-light: #f7fafc;
             --bg-light: #f4f6f8;
@@ -24,7 +25,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            border-radius: 0 !important; /* Całkowite wyeliminowanie radiusów w całym dokumencie */
+            border-radius: 0 !important; 
         }
 
         body {
@@ -40,7 +41,7 @@
             transition: var(--transition);
         }
 
-        /* GÓRNY PASEK INFO */
+
         .top-bar {
             background-color: var(--primary-color);
             color: var(--accent-color);
@@ -52,7 +53,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* NAWIGACJA */
+
         header {
             background-color: #ffffff;
             position: sticky;
@@ -91,7 +92,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 15px; /* Zwiększyłem delikatnie odstęp, żeby ramki miały oddech */
+            gap: 15px; 
         }
 
         nav ul li a {
@@ -102,27 +103,27 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 1px solid transparent;
-            transition: all 0.2s ease-in-out; /* Płynne przejście */
+            transition: all 0.2s ease-in-out; 
         }
 
-        /* PIERWSZY ELEMENT (STAŁY) */
+
         nav ul li:first-child a {
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
             background-color: var(--primary-color);
         }
 
-        /* HOVER DLA PIERWSZEGO ELEMENTU (Subtelne rozjaśnienie tła) */
+        
         nav ul li:first-child a:hover {
-            background-color: #172a3a; /* Zamiana na nieco jaśniejszy odcień z Twoich zmiennych */
+            background-color: #172a3a; 
         }
 
-        /* HOVER DLA POZOSTAŁYCH ELEMENTÓW (Pojawia się tylko złota ramka i kolor) */
+
         nav ul li:not(:first-child) a:hover {
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
         }
-        /* HERO SECTION (KLASYCZNY MONUMENTALNY UKŁAD) */
+        
         .hero {
             background: linear-gradient(rgba(12, 24, 28, 0.9), rgba(23, 42, 58, 0.85)), url('https://images.unsplash.com/photo-1548625361-155deee223d2?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
             color: var(--text-light);
@@ -188,7 +189,7 @@
             color: var(--primary-color);
         }
 
-        /* GŁÓWNY UKŁAD */
+
         .main-container {
             max-width: 1200px;
             margin: 60px auto;
@@ -198,7 +199,7 @@
             gap: 50px;
         }
 
-        /* SEKCDJA AKTUALNOŚCI */
+
         .section-title {
             font-family: 'Cinzel', serif;
             font-size: 1.6rem;
@@ -284,7 +285,6 @@
             color: var(--primary-color);
         }
 
-        /* PANEL BOCZNY (SIDEBAR) */
         aside {
             display: flex;
             flex-direction: column;
@@ -326,7 +326,6 @@
             color: var(--primary-color);
         }
 
-        /* WSPÓLNOTY */
         .groups-list {
             display: flex;
             flex-direction: column;
@@ -349,7 +348,6 @@
             color: #ffffff;
         }
 
-        /* RÓŻANIEC (DEDYKOWANY GEOMETRYCZNY STYL) */
         .rosary-box {
             background-color: var(--primary-color);
             color: #fff;
@@ -372,7 +370,6 @@
             color: #e2e8f0;
         }
 
-        /* FINANSE */
         .account-box {
             background-color: #fff;
         }
@@ -390,7 +387,6 @@
             text-align: center;
         }
 
-        /* STOPKA */
         footer {
             background-color: var(--primary-color);
             color: var(--text-light);
@@ -434,7 +430,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* RESPONSYWNOŚĆ */
         @media (max-width: 968px) {
             .main-container {
                 grid-template-columns: 1fr;
@@ -459,14 +454,10 @@
     </style>
 </head>
 <body>
-
-    <!-- GÓRNY PASEK -->
     <div class="top-bar">
         <div>📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA</div>
         <div>📞 KANCELARIA PARAFIALNA: +48 786 957 688</div>
     </div>
-
-    <!-- NAGŁÓWEK I NAWIGACJA -->
     <header>
         <div class="nav-container">
             <div class="logo-area">
@@ -485,8 +476,6 @@
             </nav>
         </div>
     </header>
-
-    <!-- HERO SECTION -->
     <section class="hero">
         <h2>Wspólnota Parafialna w Suchej Beskidzkiej</h2>
         <p>Oficjalny serwis internetowy Parafii rzymskokatolickiej pw. Nawiedzenia Najświętszej Maryi Panny.</p>
@@ -495,11 +484,7 @@
             <a href="przyklad.html" class="btn btn-secondary">Porządek Mszy Św.</a>
         </div>
     </section>
-
-    <!-- GŁÓWNA ZAWARTOŚĆ -->
     <div class="main-container">
-        
-        <!-- AKTUALNOŚCI -->
         <main>
             <h2 class="section-title">Kronika i Aktualności</h2>
             
@@ -512,7 +497,7 @@
                     </div>
                     <h3>Parafia Nawiedzenia NMP w Suchej Beskidzkiej w czasie wakacji</h3>
                     <p>Informacje dotyczące funkcjonowania parafii, porządku odprawiania Mszy Świętych oraz godzin pracy kancelarii parafialnej w okresie wakacyjnym...</p>
-                    <img src="http://parafiasucha.pl/GetImg?d=cTJIK0Z3cjRQNmU5dkFwVUg5UVpCTzJ2Smo2THNRekg2U01ZdVE4STN5Z3R2dDdnUmV4eXBRPT0=">
+                    <img src="mszeWWakacjeSB.png">
                     <a href="przyklad.html" class="read-more">Czytaj artykuł →</a>
                 </div>
 
@@ -523,7 +508,7 @@
                     </div>
                     <h3>Nabożeństwo do św. Szarbela</h3>
                     <p>Serdecznie zapraszamy na uroczyste nabożeństwo do św. Szarbela w nadchodzącą niedzielę o godz. 18.00. Prośby i intencje można składać do przygotowanego koszyka przed ołtarzem głównym. Po zakończeniu liturgii w zakrystii będzie możliwość otrzymania oleju św. Szarbela.</p>
-                    <img src="http://parafiasucha.pl/GetImg?d=cTJIK0Z3cjRQNmU5dkFwVUg5UVpCT0JxNm5YdkNBSjc3U2wvNVc4UlNqR0VLMHRxWnNoT3NnPT0=">
+                    <img src="szarbelaSB.png">
                     <a href="przyklad.html" class="read-more">Czytaj artykuł →</a>
                 </div>
 
@@ -539,11 +524,7 @@
 
             </div>
         </main>
-
-        <!-- PANEL BOCZNY -->
         <aside>
-            
-            <!-- KANCELARIA -->
             <div class="sidebar-widget">
                 <h4>Kancelaria Parafialna</h4>
                 <ul class="info-list">
@@ -552,8 +533,6 @@
                     <li><strong>Adres e-mail:</strong> parafiasucha@gmail.com</li>
                 </ul>
             </div>
-
-            <!-- RÓŻANIEC -->
             <div class="sidebar-widget rosary-box">
                 <h4>Różaniec na dziś</h4>
                 <p style="text-transform: uppercase; font-size: 0.8rem; color: var(--accent-color); font-weight: bold;">Tajemnice Chwalebne</p>
@@ -565,8 +544,6 @@
                     <li>5. Ukoronowanie NMP na Królową Nieba i Ziemi</li>
                 </ul>
             </div>
-
-            <!-- GRUPY -->
             <div class="sidebar-widget">
                 <h4>Wspólnoty i Formacja</h4>
                 <div class="groups-list">
@@ -578,8 +555,6 @@
                     <div class="group-item">Rycerstwo Niepokalanej</div>
                 </div>
             </div>
-
-            <!-- KONTO BANKOWE -->
             <div class="sidebar-widget account-box">
                 <h4>Konto Parafialne</h4>
                 <p style="font-size: 0.85rem; color:#4a5568;">Parafia Rzymskokatolicka Nawiedzenia NMP</p>
@@ -589,8 +564,6 @@
         </aside>
 
     </div>
-
-    <!-- STOPKA -->
     <footer>
         <div class="footer-content">
             <div class="footer-column">
