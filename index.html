@@ -449,14 +449,12 @@
             letter-spacing: 0.5px;
         }
 
-        /* MEDIA QUERIES - RESPONSYWNOŚĆ */
         @media (max-width: 968px) {
             .main-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
             
-            /* TOP-BAR na telefonie: lepsze rozłożenie i marginesy */
             .top-bar {
                 flex-direction: column;
                 align-items: center;
@@ -470,21 +468,18 @@
                 font-size: 0.8rem;
             }
 
-            /* HEADER: dodanie pozycji relative dla absolutnego menu */
             .nav-container {
                 padding: 15px 20px;
                 position: relative;
                 width: 100%;
                 justify-content: space-between;
-                flex-direction: row; /* Trzymamy logo i przycisk w jednej linii */
+                flex-direction: row; 
             }
 
-            /* Pokazanie przycisku hamburgera */
             .menu-toggle {
                 display: flex;
             }
 
-            /* Zmiana ikony na "X" gdy menu jest aktywne */
             .menu-toggle.active span:nth-child(1) {
                 transform: translateY(9px) rotate(45deg);
             }
@@ -495,9 +490,8 @@
                 transform: translateY(-9px) rotate(-45deg);
             }
 
-            /* ROZWIJANE MENU MOBILNE */
             nav {
-                display: none; /* Domyślnie ukryte */
+                display: none; 
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -509,7 +503,7 @@
             }
 
             nav.active {
-                display: block; /* Pokazuje się po kliknięciu */
+                display: block; 
             }
 
             nav ul {
@@ -526,7 +520,7 @@
                 display: block;
                 padding: 15px 20px;
                 text-align: left;
-                border: none !important; /* Reset obramowań z desktopu */
+                border: none !important; 
                 border-bottom: 1px solid var(--border-color);
             }
 
@@ -539,8 +533,7 @@
                 background-color: var(--bg-light);
                 color: var(--primary-color) !important;
             }
-            
-            /* Poprawa wielkości nagłówka na telefonach */
+
             .hero h2 {
                 font-size: 1.8rem;
             }
@@ -557,7 +550,6 @@
 </head>
 <body>
     <div class="top-bar">
-        <!-- Dodano klasy top-bar-item dla łatwiejszego stylowania -->
         <div class="top-bar-item">📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA</div>
         <div class="top-bar-item">📞 KANCELARIA: +48 786 957 688</div>
     </div>
@@ -577,7 +569,7 @@
 
             <nav id="nav-menu">
                 <ul>
-                    <li><a href="/">Główna</a></li>
+                    <li><a href="./">Główna</a></li>
                     <li><a href="przyklad.html">Ogłoszenia</a></li>
                     <li><a href="przyklad.html">Nabożeństwa</a></li>
                     <li><a href="przyklad.html">Intencje</a></li>
@@ -701,7 +693,6 @@
         </div>
     </footer>
 
-    <!-- Skrypt JavaScript obsługujący otwieranie i zamykanie menu -->
     <script>
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
@@ -711,7 +702,6 @@
             navMenu.classList.toggle('active');
         });
 
-        // Opcjonalnie: Zamknij menu po kliknięciu w dowolny link
         const navLinks = document.querySelectorAll('#nav-menu a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
