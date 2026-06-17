@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona w budowie - Parafia pw. Nawiedzenia NMP w Suchej Beskidzkiej</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ZMIENNE I RESET */
+        :root {
+            --primary-color: #0c181c; /* Bardzo głęboki, niemal czarny granat */
+            --secondary-color: #172a3a;
+            --accent-color: #c5a059; /* Stonowane, klasyczne złoto */
+            --text-dark: #1a202c;
+            --text-light: #f7fafc;
+            --bg-light: #f4f6f8;
+            --border-color: #e2e8f0;
+            --transition: all 0.25s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0 !important; /* Całkowite wyeliminowanie radiusów */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Zapewnia, że stopka zawsze będzie na dole */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* GÓRNY PASEK INFO */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--accent-color);
+            letter-spacing: 0.5px;
+        }
+
+        /* NAWIGACJA */
+        header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-area span {
+            font-size: 0.8rem;
+            display: block;
+            color: #4a5568;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            padding: 10px 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        /* Aktywny link menu (zgodnie z nowym stylem) */
+        nav ul li:first-child a {
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            background-color: var(--primary-color);
+        }
+
+        nav ul li:first-child a:hover {
+            background-color: #172a3a;
+        }
+
+        nav ul li:not(:first-child) a:hover {
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        /* SEKCDJA KOMUNIKATU (ZAMIAST HERO I MAIN GRID) */
+        .preview-container {
+            flex: 1; /* Wypełnia przestrzeń między nagłówkiem a stopką */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(244, 246, 248, 0.85), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1548625361-155deee223d2?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+        }
+
+        .preview-box {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--accent-color);
+            padding: 50px 40px;
+            max-width: 650px;
+            box-shadow: 0 10px 30px rgba(12, 24, 28, 0.05);
+        }
+
+        .preview-box .icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .preview-box h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .preview-box p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* STOPKA */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 60px 20px 30px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--accent-color);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 40px;
+        }
+
+        .footer-column h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column p, .footer-column li {
+            color: #a0aec0;
+            margin-bottom: 12px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 25px auto 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* RESPONSYWNOŚĆ */
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                text-align: center;
+            }
+            .preview-box {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div>📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA</div>
+        <div>📞 KANCELARIA PARAFIALNA: +48 786 957 688</div>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <h1>Parafia pw. Nawiedzenia NMP</h1>
+                <span>w Suchej Beskidzkiej</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Główna</a></li>
+                    <li><a href="przyklad.html">Ogłoszenia</a></li>
+                    <li><a href="przyklad.html">Nabożeństwa</a></li>
+                    <li><a href="przyklad.html">Intencje</a></li>
+                    <li><a href="przyklad.html">Kancelaria</a></li>
+                    <li><a href="przyklad.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="preview-container">
+        <div class="preview-box">
+            <div class="icon">🏛️</div>
+            <h2>Strona w przygotowaniu</h2>
+            <p>Ta sekcja serwisu ma w tej chwili charakter wyłącznie poglądowy. Trwają prace nad wdrożeniem pełnej zawartości i funkcji informacyjnych dla naszych Parafian.</p>
+            <a href="/" class="btn">Powrót do strony głównej</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h5>O Parafii</h5>
+                <p>Parafia rzymskokatolicka pw. Nawiedzenia Najświętszej Maryi Panny w Suchej Beskidzkiej. Służba Bogu i wspólnocie lokalnej od pokoleń.</p>
+            </div>
+            <div class="footer-column">
+                <h5>Kancelaria Cmentarza</h5>
+                <p><strong>Dyżur kancelarii:</strong> Dni robocze 7:00 - 12:00</p>
+                <p><strong>Telefon kontaktowy:</strong> +48 516 708 036</p>
+                <p><strong>Konto cmentarza:</strong> 67 8128 0005 0064 1652 2000 0010</p>
+            </div>
+            <div class="footer-column">
+                <h5>Instytucje Kościelne</h5>
+                <ul style="list-style:none; padding:0;">
+                    <li><a href="https://diecezja.pl" target="_blank">Archidiecezja Krakowska</a></li>
+                    <li><a href="https://episkopat.pl" target="_blank">Konferencja Episkopatu Polski</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Parafia Sucha Beskidzka. Wszelkie prawa zastrzeżone.</div>
+            <div><a href="przyklad.html" style="color: var(--accent-color); font-weight: bold;">Standardy Ochrony Małoletnich</a></div>
+        </div>
+    </footer>
+
+</body>
+</html>
