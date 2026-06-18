@@ -431,7 +431,7 @@
             letter-spacing: 1px;
         }
 
-        .footer-column p, .footer-column li {
+        .footer-column p, .footer-column li, .footer-column a{
             color: #a0aec0;
             margin-bottom: 12px;
         }
@@ -548,8 +548,17 @@
 </head>
 <body>
     <div class="top-bar">
-        <div class="top-bar-item">📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA</div>
-        <div class="top-bar-item">📞 KANCELARIA: +48 786 957 688</div>
+        <div class="top-bar-item">
+            <a href="https://maps.app.goo.gl/eadQFW7489Rw8gB78" target="_blank">
+                📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA
+            </a>
+        </div>
+
+        <div class="top-bar-item">
+            <a href="tel:+48786957688">
+                📞 KANCELARIA: +48 786 957 688
+            </a>
+        </div>
     </div>
     <header>
         <div class="nav-container">
@@ -630,7 +639,12 @@
                 <ul class="info-list">
                     <li><strong>Dni przyjęć:</strong> Poniedziałek – Piątek</li>
                     <li><strong>Godziny:</strong> Po wieczornej Mszy św. do godz. 19.00</li>
-                    <li><strong>Adres e-mail:</strong> parafiasucha@gmail.com</li>
+                    <li>
+                        <strong>Adres e-mail:</strong>
+                        <a href="mailto:parafiasucha@gmail.com?subject=Kontakt%20ze%20strony">
+                            parafiasucha@gmail.com
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="sidebar-widget rosary-box">
@@ -655,16 +669,46 @@
                     <div class="group-item">Rycerstwo Niepokalanej</div>
                 </div>
             </div>
-            <div class="sidebar-widget account-box">
+            <div class="sidebar-widget account-box" style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 6px; max-width: 300px;">
                 <h4>Konto Parafialne</h4>
-                <p style="font-size: 0.85rem; color:#4a5568;">Parafia Rzymskokatolicka Nawiedzenia NMP</p>
-                <div class="account-number">34 8128 0005 0000 1427 2000 0010</div>
+                <p style="font-size: 0.85rem; color:#4a5568; margin-bottom: 10px;">Parafia Rzymskokatolicka Nawiedzenia NMP</p>
+                
+                <div class="account-number" 
+                    onclick="copyParishAccount()" 
+                    style="cursor: pointer; padding: 8px; background-color: #f7fafc; border: 1px dashed #cbd5e0; border-radius: 4px; font-weight: bold; transition: background 0.2s;"
+                    onmouseover="this.style.backgroundColor='#edf2f7'" 
+                    onmouseout="this.style.backgroundColor='#f7fafc'"
+                    title="Kliknij, aby skopiować numer konta">
+                    34 8128 0005 0000 1427 2000 0010
+                </div>
+                
+                <div id="copy-parish-status" style="display: none; color: #38a169; font-size: 0.8rem; margin-top: 5px; text-align: center; font-weight: 500;">
+                    Skopiowano do schowka!
+                </div>
             </div>
+
+            <script>
+            function copyParishAccount() {
+                const accountNumber = "34 8128 0005 0000 1427 2000 0010";
+                
+                navigator.clipboard.writeText(accountNumber).then(() => {
+                    const statusDiv = document.getElementById("copy-parish-status");
+                    statusDiv.style.display = "block";
+                    
+                    // Ukryj komunikat po 2 sekundach
+                    setTimeout(() => {
+                        statusDiv.style.display = "none";
+                    }, 2000);
+                }).catch(err => {
+                    console.error("Nie udało się skopiować: ", err);
+                });
+            }
+            </script>
 
         </aside>
 
     </div>
-    <footer>
+<footer>
         <div class="footer-content">
             <div class="footer-column">
                 <h5>O Parafii</h5>
@@ -673,8 +717,27 @@
             <div class="footer-column">
                 <h5>Kancelaria Cmentarza</h5>
                 <p><strong>Dyżur kancelarii:</strong> Dni robocze 7:00 - 12:00</p>
-                <p><strong>Telefon kontaktowy:</strong> +48 516 708 036</p>
-                <p><strong>Konto cmentarza:</strong> 67 8128 0005 0064 1652 2000 0010</p>
+                <p><a href="tel:+48516708036"><strong>Telefon kontaktowy:</strong> +48 516 708 036</a></p>
+                <p>
+                <strong>Konto cmentarza:</strong> 
+                <span id="account-number" style="cursor: pointer; border-bottom: 1px dashed #666;" title="Kliknij, aby skopiować" onclick="copyToClipboard()">
+                    67 8128 0005 0064 1652 2000 0010
+                </span>
+                <span id="copy-status" style="margin-left: 10px; color: #38a169; font-size: 0.9em; display: none;">Skopiowano!</span>
+                </p>
+
+                <script>
+                function copyToClipboard() {
+                const accountNum = "67 8128 0005 0064 1652 2000 0010";
+                navigator.clipboard.writeText(accountNum).then(() => {
+                    const status = document.getElementById("copy-status");
+                    status.style.display = "inline";
+                    setTimeout(() => { status.style.display = "none"; }, 2000);
+                }).catch(err => {
+                    console.error('Błąd kopiowania: ', err);
+                });
+                }
+                </script>
             </div>
             <div class="footer-column">
                 <h5>Instytucje Kościelne</h5>

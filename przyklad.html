@@ -88,6 +88,24 @@
             letter-spacing: 2px;
             margin-top: 3px;
         }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
 
         nav ul {
             display: flex;
@@ -209,7 +227,7 @@
             letter-spacing: 1px;
         }
 
-        .footer-column p, .footer-column li {
+        .footer-column p, .footer-column li, .footer-column a{
             color: #a0aec0;
             margin-bottom: 12px;
         }
@@ -226,23 +244,100 @@
         }
 
         @media (max-width: 968px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+            
             .top-bar {
                 flex-direction: column;
                 align-items: center;
-                gap: 8px;
+                gap: 10px;
                 text-align: center;
+                padding: 12px 20px;
             }
-            .preview-box {
-                padding: 40px 20px;
+            .top-bar-item {
+                justify-content: center;
+                width: 100%;
+                font-size: 0.8rem;
+            }
+
+            .nav-container {
+                padding: 15px 20px;
+                position: relative;
+                width: 100%;
+                justify-content: space-between;
+                flex-direction: row; 
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            nav {
+                display: none; 
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                border-bottom: 2px solid var(--accent-color);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            nav.active {
+                display: block; 
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                text-align: left;
+                border: none !important; 
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            nav ul li:first-child a {
+                background-color: transparent;
+                color: var(--accent-color);
+            }
+
+            nav ul li a:hover {
+                background-color: var(--bg-light);
+                color: var(--primary-color) !important;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                padding: 0 20px;
             }
         }
     </style>
@@ -250,8 +345,17 @@
 <body>
 
     <div class="top-bar">
-        <div>📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA</div>
-        <div>📞 KANCELARIA PARAFIALNA: +48 786 957 688</div>
+        <div class="top-bar-item">
+            <a href="https://maps.app.goo.gl/eadQFW7489Rw8gB78" target="_blank">
+                📍 UL. KOŚCIELNA 3, 34-200 SUCHA BESKIDZKA
+            </a>
+        </div>
+
+        <div class="top-bar-item">
+            <a href="tel:+48786957688">
+                📞 KANCELARIA: +48 786 957 688
+            </a>
+        </div>
     </div>
 
     <header>
@@ -260,7 +364,14 @@
                 <h1>Parafia pw. Nawiedzenia NMP</h1>
                 <span>w Suchej Beskidzkiej</span>
             </div>
-            <nav>
+            
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Otwórz menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="nav-menu">
                 <ul>
                     <li><a href="index.html">Główna</a></li>
                     <li><a href="przyklad.html">Ogłoszenia</a></li>
@@ -282,7 +393,7 @@
         </div>
     </div>
 
-    <footer>
+<footer>
         <div class="footer-content">
             <div class="footer-column">
                 <h5>O Parafii</h5>
@@ -291,8 +402,27 @@
             <div class="footer-column">
                 <h5>Kancelaria Cmentarza</h5>
                 <p><strong>Dyżur kancelarii:</strong> Dni robocze 7:00 - 12:00</p>
-                <p><strong>Telefon kontaktowy:</strong> +48 516 708 036</p>
-                <p><strong>Konto cmentarza:</strong> 67 8128 0005 0064 1652 2000 0010</p>
+                <p><a href="tel:+48516708036"><strong>Telefon kontaktowy:</strong> +48 516 708 036</a></p>
+                <p>
+                <strong>Konto cmentarza:</strong> 
+                <span id="account-number" style="cursor: pointer; border-bottom: 1px dashed #666;" title="Kliknij, aby skopiować" onclick="copyToClipboard()">
+                    67 8128 0005 0064 1652 2000 0010
+                </span>
+                <span id="copy-status" style="margin-left: 10px; color: #38a169; font-size: 0.9em; display: none;">Skopiowano!</span>
+                </p>
+
+                <script>
+                function copyToClipboard() {
+                const accountNum = "67 8128 0005 0064 1652 2000 0010";
+                navigator.clipboard.writeText(accountNum).then(() => {
+                    const status = document.getElementById("copy-status");
+                    status.style.display = "inline";
+                    setTimeout(() => { status.style.display = "none"; }, 2000);
+                }).catch(err => {
+                    console.error('Błąd kopiowania: ', err);
+                });
+                }
+                </script>
             </div>
             <div class="footer-column">
                 <h5>Instytucje Kościelne</h5>
@@ -307,6 +437,22 @@
             <div><a href="przyklad.html" style="color: var(--accent-color); font-weight: bold;">Standardy Ochrony Małoletnich</a></div>
         </div>
     </footer>
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
 
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        const navLinks = document.querySelectorAll('#nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
